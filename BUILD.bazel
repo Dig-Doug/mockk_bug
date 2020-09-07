@@ -1,0 +1,30 @@
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "test_lib",
+    srcs = [
+        "Test.kt",
+    ],
+    deps = [
+        "@maven//:io_mockk_mockk",
+        "@maven//:junit_junit",
+    ],
+)
+
+java_test(
+    name = "test1",
+    size = "small",
+    test_class = "src.Test",
+    runtime_deps = [
+        ":test_lib",
+    ],
+)
+
+java_test(
+    name = "test2",
+    size = "small",
+    test_class = "src.Test",
+    runtime_deps = [
+        ":test_lib",
+    ],
+)
